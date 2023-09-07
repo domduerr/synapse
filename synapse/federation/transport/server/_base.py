@@ -104,6 +104,7 @@ class Authenticator:
                 if destination is not None and not self._is_mine_server_name(
                     destination
                 ):
+                    logger.warning(str(destination))
                     raise AuthenticationError(
                         HTTPStatus.UNAUTHORIZED,
                         "Destination mismatch in auth header",
@@ -309,7 +310,7 @@ class BaseFederationServlet:
                     )
                     raise
             except Exception as e:
-                logger.warning("authenticate_request failed: %s", e, content, request)
+                logger.warning("authenticate_request failed: %s", e)
                 raise
 
             # update the active opentracing span with the authenticated entity
