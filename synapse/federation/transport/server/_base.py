@@ -309,7 +309,7 @@ class BaseFederationServlet:
                     )
                     raise
             except Exception as e:
-                logger.warning("authenticate_request failed: %s", e)
+                logger.warning("authenticate_request failed: %s", e, content, request)
                 raise
 
             # update the active opentracing span with the authenticated entity
